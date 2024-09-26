@@ -1,13 +1,12 @@
 {
-  "name": "visits",
+  "name": "docker-mirror-page",
   "version": "1.0.0",
-  "description": "A simple app to track visits using Vercel KV database",
+  "description": "Docker 镜像引导页面",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "postinstall": "echo 'Postinstall script ran.'"
+    "start": "next start"
   },
   "private": true,
   "dependencies": {

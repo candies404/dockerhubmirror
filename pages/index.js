@@ -3,10 +3,15 @@ import { useEffect, useRef } from 'react';
 export default function Home() {
 
     const dockerUrl = process.env.NEXT_PUBLIC_DOCKER_URL;
+    const footerContent = process.env.NEXT_PUBLIC_FOOTER_CONTENT; // 获取页脚内容
 
     const laWidgetContainer = useRef(null);
 
     useEffect(() => {
+        if (!process.env.LA_WIDGET_SCRIPT_URL) {
+            console.error('LA_WIDGET_SCRIPT_URL 未定义');
+            return;
+        }
         const script = document.createElement('script');
         script.src = process.env.LA_WIDGET_SCRIPT_URL;
         script.async = true;
@@ -66,7 +71,8 @@ export default function Home() {
             </div>
 
             <div className="footer">
-                <p>@candies404 All rights reserved.</p>
+                {/* 使用 dangerouslySetInnerHTML 渲染 HTML 页脚 */}
+                <p dangerouslySetInnerHTML={{__html: footerContent}}/>
                 <p ref={laWidgetContainer}>
                     {/* 51la 统计数据将被插入到这里 */}
                 </p>
@@ -81,6 +87,16 @@ export default function Home() {
                     background-color: #f0f0f0;
                     text-align: center;
                 }
+                .footer a {
+                    color: #2980b9;
+                    text-decoration: none;
+                    font-weight: bold;
+                    transition: color 0.3s ease, text-decoration 0.3s ease; /* 添加平滑过渡效果 */
+                }
+                .footer a:hover {
+                    color: #576574;
+                    text-decoration: underline;
+                }
             `}</style>
 
             {/* 组件内样式 */}
@@ -90,24 +106,30 @@ export default function Home() {
                     padding: 50px 20px;
                     color: white;
                 }
+
                 h1 {
                     font-size: 48px;
                     margin-bottom: 10px;
                 }
+
                 .addresses {
                     margin: 20px 0;
                 }
+
                 .addresses p {
                     margin: 10px 0;
                     font-size: 18px;
                 }
+
                 .addresses a {
                     color: white;
                     text-decoration: underline;
                 }
+
                 .start-button {
                     margin: 30px 0;
                 }
+
                 .start-button span {
                     background-color: white;
                     color: #3b5998;
@@ -118,9 +140,11 @@ export default function Home() {
                     transition: background-color 0.3s;
                     cursor: pointer;
                 }
+
                 .start-button span:hover {
                     background-color: #dddddd;
                 }
+
                 .usage-section {
                     margin: 50px auto;
                     padding: 20px;
@@ -131,17 +155,20 @@ export default function Home() {
                     text-align: left;
                     line-height: 1.6;
                 }
+
                 .usage-section h3 {
                     text-align: center;
                     font-size: 22px;
                     margin-bottom: 10px;
                     font-weight: bold;
                 }
+
                 .usage-section p {
                     font-weight: 700;
                     font-size: 16px;
                     margin-bottom: 5px; /* 修改为更小的边距 */
                 }
+
                 .usage-section pre {
                     font-family: 'Consolas', 'Courier New', monospace;
                     background-color: #f5f5f5;
@@ -156,11 +183,14 @@ export default function Home() {
                     margin-bottom: 20px;
                     margin-top: 5px; /* 修改为更小的边距 */
                 }
+
                 .footer {
                     margin-top: 30px;
-                    font-size: 14px;
-                    color: #666;
+                    font-size: 16px;
+                    color: #2c3e50;
+                    font-weight: bold;
                 }
+                                
             `}</style>
         </div>
     );
