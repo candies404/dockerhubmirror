@@ -1,0 +1,20 @@
+{
+  "name": "visits",
+  "version": "1.0.0",
+  "description": "A simple app to track visits using Vercel KV database",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "echo 'Postinstall script ran.'"
+  },
+  "private": true,
+  "dependencies": {
+    "@vercel/kv": "^2.0.0",
+    "dotenv": "^16.4.5",
+    "next": "^14.2.13",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
